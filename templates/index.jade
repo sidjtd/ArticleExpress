@@ -2,6 +2,13 @@
 html(lang="en")
 head
   meta(charset="UTF-8")
-  title Document
+  title Products
 body
-  h1 Oh bobeh
+  h1
+  ul
+    each product in products
+      li Name: #{product.name}
+      li Price: #{product.price}
+      li Inventory #{product.inventory}
+      li Id: #${pro.id}
+      li
