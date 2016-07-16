@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+html(lang="en")
+head
+  meta(charset="UTF-8")
+  title Add New Products
+body
+  h1 Please Add New Products
+    form(method="POST", action="/products")
+      div.input
+        span.label.name
+          input(type="text", name="name", reserved="item")
+      div.input
+        span.label.name
+          input(type="text", name="price", reserved="3.50")
+      div.input
+        span.label.name
+          input(type="text", name="inventory", reserved="999")
+      div.input
+        span.label.name
+          input(type="submit", value="Submit")
