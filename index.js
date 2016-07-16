@@ -1,17 +1,14 @@
 'use strict';
-// const exp = require('express');
-// const app = exp();
+
 const app = require('./server');
 
   //Bring that server.js in as APP
 
 const PORT = 3000;
 
-
  /*    Actual Server (Separated for Test Purposes)
-
  ____________________________________________________
- ---------------------------------------------------*76=
+ ---------------------------------------------------*/
 var server = app.listen(PORT, function (){
 
   var host = server.address().address;
@@ -19,6 +16,5 @@ var server = app.listen(PORT, function (){
   var port = server.address().port;
 
   console.log(`Server listening @ :${host}:${port}`);
-
 
 }); // server---<<<
