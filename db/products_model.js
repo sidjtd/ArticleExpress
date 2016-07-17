@@ -3,12 +3,15 @@
 =               Products DataBase             =
 =============================================*/
 module.exports = (function(){
-
   var productArray = [];
-  var uniqueID = 0;
+
+
+  function randomNum(){
+    return Math.floor(100000*Math.random());
+  }
 
   function _post(req, res){
-    req.body.id = uniqueID++;
+    req.body.id = randomNum;
     productArray.push(req.body);
     res.send({'success': true});
   }

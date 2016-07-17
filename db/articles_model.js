@@ -5,10 +5,12 @@
 module.exports = (function(){
 
   var articleArray = [];
-  var uniqueID = 0;
+  function randomNum(){
+    return Math.floor(100000*Math.random());
+  }
 
   function _post(req, res){
-    req.body.id = uniqueID++;
+    req.body.id = randomNum();
     articleArray.push(req.body);
     res.send({'success': true});
   }
@@ -17,7 +19,7 @@ module.exports = (function(){
     for ( var i = 0; i < articleArray.length; i++){
       if(parseFloat(req.body.id) === articleArray[i].id){
         for (var key in req.body){
-          (articleArray[i][key] = req.body[key]);
+          ( articleArray[i][key] = req.body[key] );
         }
         res.status(200).send({'success': true});
         return;
@@ -27,7 +29,7 @@ module.exports = (function(){
   }
 
   function _deleter(req, res){
-    for ( var i = 0; i < articleArray.length; i++){
+    for ( var i = 0; i < articleArray.length; i++ ){
       if(parseFloat(req.body.id) === body.param.id){
         articleArray.splice(i,1);
         res.status(200).send({'success': true});
