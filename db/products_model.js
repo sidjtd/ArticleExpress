@@ -1,45 +1,54 @@
+'use strict';
+/*=============================================
+=               Products DataBase             =
+=============================================*/
 module.exports = (function(){
 
   var productArray = [];
   var uniqueID = 0;
 
-  function post(req, res){
+  function _post(req, res){
     req.body.id = uniqueID++;
     productArray.push(req.body);
-    res.send({'sucess': true});
+    res.send({'success': true});
   }
 
-  function put(req, res){
+  function _put(req, res){
     for ( var i = 0; i < productArray.length; i++){
       if(parseFloat(req.body.id) === productArray[i].id){
         for (var key in req.body){
           (productArray[i][key] = req.body[key]);
         }
-        res.status(200).send({'sucess': true});
+        res.status(200).send({'success': true});
         return;
       }
     }
-    return res.send({'sucess': false});
+    return res.send({'success': false});
   }
 
-
-  function deleter(req, res){
+  function _deleter(req, res){
     for ( var i = 0; i < productArray.length; i++){
       if(parseFloat(req.body.id) === body.param.id){
         productArray.splice(i,1);
-        res.status(200).send({'sucess': true});
+        res.status(200).send({'success': true});
         return;
       }
-    return res.send({'sucess': false});
+    return res.send({'success': false});
     }
   }
 
-
-  function itemById(req, res){
+  function _itemById(req, res){
     if(parseFloat(productArray[i].id) === body.param.id){
       return;
     }
   }
+
+  return {
+    post: _post,
+    put: _put,
+    delete: _deleter,
+    find: _itemById
+  };
 
 })();
 

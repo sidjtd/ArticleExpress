@@ -1,0 +1,22 @@
+extends helper
+
+block content
+  if(storage && title)
+    each object in storage
+      if object.title === Number(title)
+        form(action="/articles/#{Number(title)}" method="POST")
+          div.input
+            span.label.name
+              input(type="hidden", name="method", value="PUT")
+          div.input
+            span.label.name
+              input(type="text", name="price", reserved="#{object.urltitle}")
+          div.input
+            span.label.name
+              input(type="text", name="inventory", reserved="999")
+          div.input
+            span.label.name
+              input(type="text", name="author", reserved="#{object.author}")
+          div.input
+            span.label.name
+              input(type="submit", value="EDIT"

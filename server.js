@@ -1,46 +1,23 @@
 'use strict';
+/*=============================================
+=            Server.js                        =
+=============================================*/
 
-var exp = require('express');
-var app = exp();
-var parser = require('body-parser');
-var prodMod = require('./db/productModel');
-var methodOverride = require('method-override');
+  var articleRouter = require('./routes/articles_r.js');
+  var productRouter = require('./routes/products_r.js');
 
-//var methodOverride = require('method-override');
-
-app.set('view engine','jade');
-app.set('views', './templates');
-
-app.use(parser.json());
-app.use(parser.urlencoded({ extended: true})); // <Catches incoming res, does action on it.
-//app.use(exp.static('public')); // <This sends 404 when it can't find req in public/elsewhere:)
+  var express = require('express');
+  var app = express();
 
 
-app.get('/products', (req, res) => {
-  res.render('product/index', {
-    products: prodMod.productHolder
-  });
-});
+/*---- Middleware + Routers ----*/
+  app.set('view engine','jade');
+  app.set('views', './templates');
 
-app.get('/products/:id/edit', (req, res) => {
-  var allProducts = prodMod.all();
-  res.render('products/edit', {
-    products: prodMod.productHolder,
-    id: req.params.id
-  });
-});
+  app.use('/articles', articleRouter);
+  app.use('/products', productRouter);
 
-app.get('/products/new', (req, res) => {
-  res.render('products/new', {
 
-  });
-});
+module.exports = app; //--------->>>>>>> To index.js
 
-app.post('/products', (req, res) => {
-  var allProducts = prodMod.all();
-  res.render('index', {
-    products: prodMod.productHolder
-  });
-});
-
-module.exports = app;
+ /*=====  End =====*/
